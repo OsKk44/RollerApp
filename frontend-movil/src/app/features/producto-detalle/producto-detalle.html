@@ -80,25 +80,14 @@
       </ion-item>
           @if (errorCampo('direccion'); as error) { <p id="error-direccion" role="alert" class="error-campo">{{ error }}</p> }
       <ion-item>
-        <ion-select
-          label="Comuna"
-          label-placement="stacked"
-          placeholder="Selecciona una comuna"
-          interface="action-sheet"
-          [interfaceOptions]="{ header: 'Selecciona una comuna' }"
-          cancelText="Cancelar"
-          formControlName="comuna"
-          (ionChange)="cambiarComuna()"
-          [attr.aria-invalid]="!!errorCampo('comuna')"
-          aria-describedby="error-comuna"
-          style="width:100%;min-width:0;min-height:48px;font-size:16px"
-        >
-          @for (comuna of comunasDisponibles(); track comuna) {
-            <ion-select-option [value]="comuna">
-              {{ comuna }}
-            </ion-select-option>
-          }
-        </ion-select>
+          <ion-label position="stacked">Comuna</ion-label>
+          
+          <ion-input
+            type="text"
+            formControlName="comuna"
+            [attr.aria-invalid]="!!errorCampo('comuna')"
+            aria-describedby="error-comuna"
+          ></ion-input>
           @if (errorCobertura()) { <p role="alert" class="error-cobertura">{{ errorCobertura() }}</p> }
       </ion-item>
           @if (errorCampo('comuna'); as error) { <p id="error-comuna" role="alert" class="error-campo">{{ error }}</p> }
