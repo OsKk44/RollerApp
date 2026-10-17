@@ -1,3 +1,4 @@
+import { exportarExcel, exportarPdf } from '../../../core/utils/exportar-reportes';
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe, DatePipe } from '@angular/common';
@@ -28,6 +29,12 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       next: datos => { this.kpis.set(datos); this.error.set(false); },
     });
   }
+  private datosReporte(): (string | number)[][] {
+    return (this.kpis()?.meses ?? []).map(m => [m.mes, m.ventas, m.compras, m.cotizaciones, m.concretadas, m.usuarios]);
+  }
+  readonly columnasReporte = ['Mes', 'Ventas CLP', 'Compras', 'Cotizaciones', 'Concretadas', 'Usuarios nuevos'];
+  excelReporte(): void { exportarExcel('rollerapp-reporte-mensual', this.columnasReporte, this.datosReporte()); }
+  pdfReporte(): void { exportarPdf('Reporte mensual de RollerApp', this.columnasReporte, this.datosReporte()); }
   ngOnDestroy(): void { this.consulta?.unsubscribe(); }
   alto(mes: MesKpi, campo: 'compras' | 'usuarios' | 'cotizaciones' | 'ventas'): number {
     const maximo = Math.max(1, ...(this.kpis()?.meses.map(m => m[campo]) ?? []));

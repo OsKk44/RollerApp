@@ -1,3 +1,4 @@
+import { exportarExcel, exportarPdf } from '../../../core/utils/exportar-reportes';
 import { CotizacionesAdminComponent } from '../../../shared/components/cotizaciones-admin/cotizaciones-admin';
 import { VisitaPedidoComponent } from '../../../shared/components/visita-pedido/visita-pedido';
 import { RouterLink } from '@angular/router';
@@ -38,6 +39,12 @@ export class AdminPedidosComponent implements OnInit {
     REPROGRAMADO: 'EN_TERRENO',
   };
 
+  readonly columnasVentas = ['Pedido', 'Fecha', 'Producto', 'Total CLP', 'Estado', 'Comuna', 'Dirección', 'Vendedor'];
+  private datosVentas(): (string | number)[][] {
+    return this.pedidos().map(p => [p.id, p.creadoEn?.slice(0, 10) ?? '', p.productoNombre, p.total, this.etiquetaEstado(p.estado), p.comuna, p.direccion, p.vendedorNombre ?? 'Venta online']);
+  }
+  excelVentas(): void { exportarExcel('rollerapp-pedidos-ventas', this.columnasVentas, this.datosVentas()); }
+  pdfVentas(): void { exportarPdf('Pedidos y ventas de RollerApp', this.columnasVentas, this.datosVentas()); }
   ngOnInit(): void {
     this.cargar();
     if (this.esAdmin()) this.auth.listarUsuarios().subscribe({

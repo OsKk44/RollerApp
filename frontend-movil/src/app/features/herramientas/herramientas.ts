@@ -19,7 +19,6 @@ export class HerramientasComponent {
  {titulo:'Postventa',detalle:'Resolver solicitudes de clientes',ruta:'/tabs/admin-postventa'},
  {titulo:'Incidencias de pago',detalle:'Conciliar pagos y asignar visitas',ruta:'/tabs/admin-incidencias'},
  {titulo:'Comunicaciones',detalle:'Historial y reintento de correos',ruta:'/tabs/admin-comunicaciones'},
- {titulo:'Cotizaciones',detalle:'Presupuestos y paginación',ruta:'/tabs/admin-operaciones',parametros:{seccion:'cotizaciones'}},
- {titulo:'Auditoría',detalle:'Actividad administrativa',ruta:'/tabs/admin-operaciones',parametros:{seccion:'auditoria'}}];
+ {titulo:'Cotizaciones',detalle:'Presupuestos y paginación',ruta:'/tabs/admin-operaciones',parametros:{seccion:'cotizaciones'}}];
  publicos:Acceso[]=[{titulo:'Servicios disponibles',detalle:'Qué ofrecemos y sus precios',ruta:'/tabs/servicios'},{titulo:'Reseñas',detalle:'Opiniones y experiencia',ruta:'/tabs/resenas'},{titulo:'Solicitar postventa',detalle:'Ayuda con una compra',ruta:'/tabs/postventa'}];
 }

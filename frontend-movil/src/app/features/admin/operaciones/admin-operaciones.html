@@ -1,12 +1,7 @@
 <ion-header><ion-toolbar><ion-title>{{ seccion() === 'agenda' ? 'Agenda operativa' : 'Más herramientas' }}</ion-title></ion-toolbar></ion-header>
 <ion-content class="ion-padding">
   <nav class="operaciones-nav" aria-label="Secciones administrativas">
-    <ion-button size="small" routerLink="/tabs/admin-agenda">Agenda</ion-button>
-    <ion-button size="small" [fill]="seccion() === 'usuarios' ? 'solid' : 'clear'" [attr.aria-current]="seccion() === 'usuarios' ? 'page' : null" routerLink="/tabs/admin-usuarios">Usuarios</ion-button>
-    <ion-button size="small" [fill]="seccion() === 'incidencias' ? 'solid' : 'clear'" [attr.aria-current]="seccion() === 'incidencias' ? 'page' : null" routerLink="/tabs/admin-incidencias">Incidencias</ion-button>
     <ion-button size="small" [fill]="seccion() === 'cotizaciones' ? 'solid' : 'clear'" [attr.aria-current]="seccion() === 'cotizaciones' ? 'page' : null" (click)="abrir('cotizaciones')">Cotizaciones</ion-button>
-    <ion-button size="small" [fill]="seccion() === 'auditoria' ? 'solid' : 'clear'" [attr.aria-current]="seccion() === 'auditoria' ? 'page' : null" (click)="abrir('auditoria')">Auditoría</ion-button>
-    <ion-button size="small" routerLink="/tabs/perfil">Mi cuenta</ion-button>
   </nav>
   @if (error()) { <p role="alert" style="color:var(--ion-color-danger)">{{error()}}</p> }
   @if (aviso()) { <p role="status" style="color:var(--ion-color-success)">{{aviso()}}</p> }

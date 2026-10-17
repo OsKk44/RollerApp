@@ -277,3 +277,13 @@ ion-button { --border-radius:12px; }
 .auth-brand-mark{display:block;width:56px;height:56px;margin:0 auto 18px;border-radius:16px}
 
 button{min-height:44px;padding:10px 16px;border:1px solid #294d3e;border-radius:9px;background:#294d3e;color:#fff;font:inherit;font-weight:600;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible{outline:3px solid #a87854;outline-offset:3px}input:not([type=checkbox]):not([type=radio]),select,textarea{border:1px solid #becbc2;border-radius:8px;padding:10px;color:#21382f;background:#fff;min-height:44px}input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #92b7a266;outline-offset:2px}
+
+/* Small-screen containment for all administration modules. */
+ion-content main,ion-content section,ion-content article{min-width:0}
+ion-content img{max-width:100%;height:auto}
+@media(max-width:600px){
+ ion-content table{max-width:100%}
+ ion-content .tabla-contenedor,ion-content .historial-tabla{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+ ion-content input,ion-content select,ion-content textarea{max-width:100%;box-sizing:border-box}
+ ion-content .ion-padding{--padding-start:12px;--padding-end:12px}
+}

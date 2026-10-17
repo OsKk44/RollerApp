@@ -1,3 +1,4 @@
+import { COMUNAS_SANTIAGO } from '../../core/utils/comunas';
 import { Subscription, combineLatest, map, distinctUntilChanged } from 'rxjs';
 import { imagenProducto } from '../../core/utils/imagen-producto';
 import { Component, OnInit, OnDestroy, computed, inject, signal } from '@angular/core';
@@ -21,6 +22,8 @@ import { Producto, Tela, Mecanismo, ServicioAdicional } from '../../core/models/
   styleUrl: './producto-detalle.scss',
 })
 export class ProductoDetalleComponent implements OnInit, OnDestroy {
+  readonly comunas = COMUNAS_SANTIAGO;
+
   readonly imagenProducto = imagenProducto;
 
   imagenFallback(evento: Event): void {

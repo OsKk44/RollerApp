@@ -1,4 +1,5 @@
 <header class="page-intro"><span class="kicker">{{esAdmin()?"ADMINISTRACIÓN":"VENDEDOR"}} · PEDIDOS</span><h1>{{esAdmin()?"Gestión de pedidos":"Panel de ventas"}}</h1><p>Consulta las compras, el estado de cada pedido y la ficha del cliente.</p></header>
+<div class="pedido-acciones"><button type="button" [disabled]="cargando() || errorCarga() || !pedidos().length" (click)="pdfVentas()">Descargar PDF</button><button type="button" [disabled]="cargando() || errorCarga() || !pedidos().length" (click)="excelVentas()">Descargar Excel (CSV)</button></div>
 @if(cancelando();as p){<section><p>¿Cancelar el pedido #{{p.id}}? Se cancelará su visita pendiente. El pago permanece registrado; cualquier reembolso requiere gestión aparte.</p><button (click)="cancelarPedido()" [disabled]="actualizandoId()!==null">Confirmar cancelación</button><button (click)="cancelando.set(null)" [disabled]="actualizandoId()!==null">Volver</button></section>}
 
 @if (cargando()) {

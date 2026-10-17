@@ -94,7 +94,7 @@
 
         <div class="form-item">
           <label for="comuna">Comuna</label>
-          <input id="comuna" type="text" formControlName="comuna" [attr.aria-invalid]="!!errorCampo('comuna')" aria-describedby="error-comuna">
+          <select id="comuna" formControlName="comuna" [attr.aria-invalid]="!!errorCampo('comuna')" aria-describedby="error-comuna"><option value="">Selecciona una comuna</option>@for (comuna of comunas; track comuna) { <option [value]="comuna">{{ comuna }}</option> }</select>
           @if (errorCampo('comuna'); as error) { <p id="error-comuna" role="alert" class="error-campo">{{ error }}</p> }
           @if (errorCobertura()) { <p role="alert" class="error-cobertura">{{ errorCobertura() }}</p> }
         </div>

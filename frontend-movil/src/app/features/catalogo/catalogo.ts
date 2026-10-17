@@ -3,7 +3,7 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle,
-  IonCardContent, IonImg, IonSpinner, IonBadge,
+  IonCardContent, IonSpinner, IonBadge,
 } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { CatalogoService } from '../../core/services/catalogo.service';
@@ -16,7 +16,7 @@ import { Producto } from '../../core/models/producto.model';
   imports: [
     RouterLink,
     IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle,
-    IonCardContent, IonImg, IonSpinner, IonBadge,
+    IonCardContent, IonSpinner, IonBadge,
   ],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.scss',

@@ -36,7 +36,7 @@
       <div class="catalogo-mobile-grid">
         @for (producto of productosFiltrados(); track producto.id) {
           <ion-card [routerLink]="['/productos', producto.id]" button="true" class="catalogo-mobile-card">
-            @if (producto.imagenPrincipal) { <ion-img [src]="imagenProducto(producto.imagenPrincipal)" [alt]="producto.nombre"></ion-img> }
+            @if (producto.imagenPrincipal) { <img [src]="imagenProducto(producto.imagenPrincipal)" [alt]="producto.nombre" loading="lazy" decoding="async" /> }
             <ion-card-header><ion-badge color="tertiary">{{ producto.categoria }}</ion-badge><ion-card-title>{{ producto.nombre }}</ion-card-title></ion-card-header>
             <ion-card-content>{{ producto.descripcion }}<span class="catalogo-mobile-link">Ver producto →</span></ion-card-content>
           </ion-card>

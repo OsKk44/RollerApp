@@ -1,3 +1,4 @@
+import { COMUNAS_SANTIAGO } from '../../core/utils/comunas';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostventaService } from '../../core/services/postventa.service';
@@ -10,6 +11,8 @@ import { ToastService } from '../../core/services/toast.service';
   styleUrl: './postventa.scss',
 })
 export class PostventaComponent {
+  readonly comunas = COMUNAS_SANTIAGO;
+
   private postventaService = inject(PostventaService);
   private toast = inject(ToastService);
 

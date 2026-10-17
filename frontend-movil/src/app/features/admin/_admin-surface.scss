@@ -16,3 +16,13 @@ h1 { font-size:clamp(1.8rem,3.5vw,2.7rem); letter-spacing:-.045em; line-height:1
 .tela-info { display:flex; flex-direction:column; } .tela-info .precio-actual { color:var(--color-primary); font-weight:700; margin-top:10px; } .tela-edicion input { width:125px; min-height:39px; padding:8px 10px; border:1px solid var(--color-border); border-radius:9px; background:#fcfcfa; }
 @media(max-width:680px) { h1 { margin:18px 0 22px; padding-bottom:18px; } .producto-fila,.usuario-fila,.pedido-fila,.solicitud-fila,.tela-fila { flex-direction:column; align-items:stretch; padding:19px; gap:16px; } .acciones,.usuario-acciones,.pedido-acciones,.tela-edicion { flex-wrap:wrap; justify-content:flex-start; } .acciones .estado,.usuario-acciones .estado,.pedido-acciones .estado { margin-right:auto; } .tela-edicion input { flex:1; min-width:90px; } }
 @media(max-width:400px) { .acciones,.usuario-acciones,.pedido-acciones { align-items:stretch; flex-direction:column; } .acciones .estado,.usuario-acciones .estado,.pedido-acciones .estado { align-self:flex-start; } .acciones .btn,.usuario-acciones .btn,.pedido-acciones .btn { width:100%; } }
+
+@media(max-width:680px){
+ h1{font-size:1.55rem;letter-spacing:-.025em}
+ .producto-fila,.usuario-fila,.pedido-fila,.solicitud-fila,.tela-fila{padding:14px;gap:10px;border-radius:12px}
+ .acciones,.usuario-acciones,.pedido-acciones,.tela-edicion{flex-direction:row;flex-wrap:wrap;align-items:center;gap:7px}
+ .acciones .btn,.usuario-acciones .btn,.pedido-acciones .btn{width:auto;flex:1 1 auto;min-height:40px;padding:9px 11px;white-space:normal}
+ .acciones .estado,.usuario-acciones .estado,.pedido-acciones .estado{flex:0 0 auto}
+ .producto-fila strong,.usuario-fila strong,.pedido-fila strong,.solicitud-fila strong,.tela-fila strong{font-size:.9rem}
+ .tela-edicion input{min-width:0;flex:1 1 100px}
+}

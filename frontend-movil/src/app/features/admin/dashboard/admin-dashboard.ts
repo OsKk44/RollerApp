@@ -1,3 +1,4 @@
+import { exportarExcel, exportarPdf } from '../../../core/utils/exportar-reportes';
 import { addIcons } from 'ionicons';
 import { receiptOutline, gridOutline, layersOutline, settingsOutline, constructOutline, peopleOutline, cardOutline, listOutline, chevronDownOutline, arrowForwardOutline } from 'ionicons/icons';
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
@@ -44,6 +45,12 @@ export class AdminDashboardComponent implements OnDestroy {
       error: () => { this.error.set(true); this.cargando.set(false); },
     });
   }
+  readonly columnasReporte = ['Mes', 'Ventas CLP', 'Compras', 'Cotizaciones', 'Concretadas', 'Usuarios nuevos'];
+  private datosReporte(): (string | number)[][] {
+    return (this.kpis()?.meses ?? []).map(m => [m.mes, m.ventas, m.compras, m.cotizaciones, m.concretadas, m.usuarios]);
+  }
+  excelReporte(): void { if (this.kpis()) exportarExcel('rollerapp-reporte-mensual', this.columnasReporte, this.datosReporte()); }
+  pdfReporte(): void { if (this.kpis()) exportarPdf('Reporte mensual de RollerApp', this.columnasReporte, this.datosReporte()); }
   ionViewWillLeave(): void { this.consulta?.unsubscribe(); }
   ngOnDestroy(): void { this.consulta?.unsubscribe(); }
 }

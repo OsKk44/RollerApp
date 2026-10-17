@@ -7,6 +7,13 @@
 <article><span>Visitas reservadas</span><strong>{{datos.visitasAgendadas}}</strong><small>{{datos.visitasCompletadas}} completadas · {{datos.visitasCanceladas}} canceladas</small></article>
 </div><details class="detalle-indicadores"><summary>Consultar detalle e historial mensual</summary><div class="detalle-operacion"><p><strong>{{datos.enConfeccion}}</strong> en producción</p><p><strong>{{datos.enTerreno}}</strong> en camino</p><p><strong>{{datos.cotizacionesPendientesMes}}</strong> cotizaciones del mes pendientes</p><p><strong>{{datos.usuariosMes}}</strong> nuevos usuarios del mes</p></div><div class="historial-tabla"><table><thead><tr><th>Mes</th><th>Ventas</th><th>Compras</th><th>Cotizaciones concretadas</th></tr></thead><tbody>@for(mes of datos.meses;track mes.mes){<tr><td>{{etiquetaMes(mes.mes)}}</td><td>{{mes.ventas | currency:'CLP':'symbol-narrow':'1.0-0'}}</td><td>{{mes.compras}}</td><td>{{mes.concretadas}} / {{mes.cotizaciones}}</td></tr>}</tbody></table></div><p class="definicion">Ventas excluyen pedidos cancelados. Conversión: cotizaciones pagadas del mismo mes de creación. Visitas: totales históricos, sin horarios libres retirados.</p></details><p class="actualizado">Actualizado {{datos.actualizadoEn | date:'dd/MM/yyyy HH:mm'}}</p>
 }@else if(!error()){<p class="admin-resumen-estado">Cargando resumen…</p>}</section>
+<section class="reportes-panel" aria-label="Reportes de administración">
+    <div class="reportes-encabezado"><div><span class="reportes-etiqueta">ANÁLISIS Y RESULTADOS</span><h2>Reportes</h2><p>Historial mensual de ventas, compras, cotizaciones y nuevos usuarios.</p></div></div>
+    <div class="reportes-acciones">
+      <button type="button" class="reporte-boton pdf" [disabled]="!kpis()" (click)="pdfReporte()"><span class="reporte-icono" aria-hidden="true">PDF</span><span>Descargar PDF<small>Para imprimir o compartir</small></span><span class="reporte-flecha" aria-hidden="true">↓</span></button>
+      <button type="button" class="reporte-boton excel" [disabled]="!kpis()" (click)="excelReporte()"><span class="reporte-icono" aria-hidden="true">CSV</span><span>Descargar Excel<small>Archivo CSV compatible</small></span><span class="reporte-flecha" aria-hidden="true">↓</span></button>
+    </div>
+  </section>
 <div class="admin-seccion-titulo"><h2>Áreas de trabajo</h2><p>Ordenamos las herramientas por tema para que sea más fácil encontrar lo que necesitas.</p></div>
 <div class="admin-grupos" aria-label="Módulos administrativos">
   <details class="admin-grupo" open>
