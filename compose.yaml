@@ -27,9 +27,9 @@ services:
       DB_USUARIO: rollerapp
       DB_CONTRASENA: ${DB_CONTRASENA:?Definir DB_CONTRASENA}
       JWT_SECRETO: ${JWT_SECRETO:?Definir JWT_SECRETO}
-      FRONTEND_ORIGENES: ${FRONTEND_ORIGENES:-http://localhost:8088,http://localhost,https://localhost,capacitor://localhost}
-      BACKEND_URL_PUBLICA: ${BACKEND_URL_PUBLICA:-http://localhost:8088}
-      FRONTEND_URL_PAGO_RETORNO: ${FRONTEND_URL_PAGO_RETORNO:-http://localhost:8088/pago/retorno}
+      FRONTEND_ORIGENES: ${FRONTEND_ORIGENES:?Falta FRONTEND_ORIGENES}
+      BACKEND_URL_PUBLICA: ${BACKEND_URL_PUBLICA:?Falta BACKEND_URL_PUBLICA}
+      FRONTEND_URL_PAGO_RETORNO: ${FRONTEND_URL_PAGO_RETORNO:?Falta FRONTEND_URL_PAGO_RETORNO}
       IMAGENES_DIRECTORIO: /app/uploads/productos
       SMTP_HOST: ${SMTP_HOST:-smtp.sendgrid.net}
       SMTP_PORT: ${SMTP_PORT:-587}
