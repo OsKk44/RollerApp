@@ -1,9 +1,10 @@
+import { DetalleProductoPedidoComponent } from '../../shared/components/detalle-producto-pedido/detalle-producto-pedido';
 import { etiquetaEstado } from '../../core/utils/estado-pedido';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { fechaChile } from '../../core/utils/fecha-chile';
 import { ObservacionesVisitaComponent } from '../../shared/components/observaciones-visita/observaciones-visita';
-import { Component, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, computed, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { PedidoService } from '../../core/services/pedido.service';
 import { AgendaService } from '../../core/services/agenda.service';
@@ -12,7 +13,7 @@ import { Pedido } from '../../core/models/pedido.model';
 
 @Component({
   selector: 'app-mis-visitas',
-  imports: [FormsModule, ObservacionesVisitaComponent, DatePipe],
+  imports: [DetalleProductoPedidoComponent, FormsModule, ObservacionesVisitaComponent, DatePipe],
   templateUrl: './mis-visitas.html',
   styleUrl: './mis-visitas.scss',
 })
@@ -29,6 +30,16 @@ export class MisVisitasComponent implements OnInit, OnDestroy {
   }
   hoy(): void { this.cambiarFecha(fechaChile()); }
   ngOnDestroy(): void { this.consulta?.unsubscribe(); }
+  busqueda = signal('');
+  filtroEstado = signal('TODOS');
+  visitasFiltradas = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase('es-CL');
+    return this.visitas().filter(v => {
+      const texto = [v.id, v.visitaId, v.productoNombre, v.direccion, v.comuna].join(' ').toLocaleLowerCase('es-CL');
+      return (!q || texto.includes(q)) && (this.filtroEstado() === 'TODOS' || v.visitaEstado === this.filtroEstado());
+    });
+  });
+  limpiarFiltros(): void { this.busqueda.set(''); this.filtroEstado.set('TODOS'); }
   visitas = signal<Pedido[]>([]);
   cargando = signal(true);
   error = signal(false);

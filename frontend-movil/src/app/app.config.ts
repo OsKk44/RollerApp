@@ -11,6 +11,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { origenAuditoriaInterceptor } from './core/interceptors/origen-auditoria.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideIonicAngular({}),
-    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor]))
+    provideHttpClient(withInterceptors([authInterceptor, origenAuditoriaInterceptor, errorInterceptor]))
   ]
 };

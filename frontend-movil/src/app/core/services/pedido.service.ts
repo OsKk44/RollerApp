@@ -1,3 +1,4 @@
+import { Cotizacion } from '../models/cotizacion.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,6 +9,10 @@ import { EstadoPedido, Pedido } from '../models/pedido.model';
 export class PedidoService {
   private http = inject(HttpClient);
   private baseUrl = `${environment.apiUrl}/pedidos`;
+
+  detalleProducto(id: number): Observable<Cotizacion> {
+    return this.http.get<Cotizacion>(`${this.baseUrl}/${id}/detalle-producto`);
+  }
 
   listarPropios(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.baseUrl);

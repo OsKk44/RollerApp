@@ -1,3 +1,4 @@
+import { DetalleProductoPedidoComponent } from '../../shared/components/detalle-producto-pedido/detalle-producto-pedido';
 import { etiquetaEstado } from '../../core/utils/estado-pedido';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -18,7 +19,7 @@ import { EstadoPedido, Pedido } from '../../core/models/pedido.model';
 
 @Component({
   selector: 'app-mis-visitas',
-  imports: [FormsModule, ObservacionesVisitaComponent, DatePipe, IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonBadge, IonSpinner, IonButton, IonIcon],
+  imports: [DetalleProductoPedidoComponent, FormsModule, ObservacionesVisitaComponent, DatePipe, IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonBadge, IonSpinner, IonButton, IonIcon],
   templateUrl: './mis-visitas.html',
   styleUrl: './mis-visitas.scss',
 })

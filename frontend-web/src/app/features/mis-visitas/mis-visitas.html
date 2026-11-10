@@ -7,6 +7,12 @@
     <button type="button" (click)="hoy()">Hoy</button>
     <button type="button" (click)="cargar()" [disabled]="cargando()">Actualizar</button>
   </div>
+  <div class="filtros-visitas" role="search" aria-label="Filtrar visitas">
+    <label>Buscar pedido o visita<input type="search" placeholder="N.º, producto, dirección o comuna" [value]="busqueda()" (input)="busqueda.set($any($event.target).value)"></label>
+    <label>Estado de visita<select [value]="filtroEstado()" (change)="filtroEstado.set($any($event.target).value)"><option value="TODOS">Todos</option><option value="RESERVADO">Reservado</option><option value="COMPLETADO">Completado</option><option value="CANCELADO">Cancelado</option></select></label>
+    <button type="button" (click)="limpiarFiltros()">Limpiar filtros</button>
+    <span role="status">{{visitasFiltradas().length}} de {{visitas().length}} visitas</span>
+  </div>
   <p class="agenda-resumen">Agenda del {{ fecha | date:'dd/MM/yyyy' }}.</p>
 
   @if (cargando()) {
@@ -17,11 +23,13 @@
   } @else if (visitas().length === 0) {
     <p>No tienes visitas asignadas para esta fecha.</p>
   } @else {
+    @if (visitasFiltradas().length === 0) { <p role="status">No hay visitas que coincidan con estos filtros para la fecha seleccionada.</p> }
     <div class="lista">
-      @for (visita of visitas(); track visita.id) {
+      @for (visita of visitasFiltradas(); track visita.id) {
         <article class="visita">
           <h2>Visita #{{ visita.visitaId }} · Pedido #{{ visita.id }}</h2>
           <p><strong>{{ visita.productoNombre }}</strong> · {{ etiquetaEstado(visita.estado) }}</p>
+          <app-detalle-producto-pedido [pedidoId]="visita.id" />
           <p>{{ visita.visitaFecha | date:'dd/MM/yyyy' }} · {{ visita.visitaHoraInicio }}–{{ visita.visitaHoraFin }}</p>
           <p>{{ visita.direccion }}, {{ visita.comuna }}</p>
           <span class="estado-visita">{{ visita.visitaEstado }}</span>

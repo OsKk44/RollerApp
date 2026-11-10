@@ -1,6 +1,7 @@
 package cl.rollerapp.backend.config;
 
 import cl.rollerapp.backend.security.JwtAuthFilter;
+import cl.rollerapp.backend.security.AuditoriaHttpFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,7 @@ import java.util.Arrays;
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+    private final AuditoriaHttpFilter auditoriaHttpFilter;
     private final UserDetailsService usuarioDetallesService;
 
     @Value("${app.frontend-origenes}")
@@ -76,7 +78,8 @@ public class SecurityConfig {
 
                 .anyRequest().authenticated()
             )
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterAfter(auditoriaHttpFilter, JwtAuthFilter.class);
 
         return http.build();
     }
@@ -91,7 +94,7 @@ public class SecurityConfig {
         }
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        config.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-RollerApp-Cliente"));
         config.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

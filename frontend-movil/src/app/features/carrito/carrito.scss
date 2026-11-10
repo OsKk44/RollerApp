@@ -30,3 +30,6 @@ header{display:flex;flex-direction:column;align-items:flex-start;padding-bottom:
 :host{padding:0;--color-primary:var(--ion-color-primary);--color-primary-dark:var(--ion-color-primary-shade);--color-accent-dark:#8a4e31;--color-text:#172b32;--color-text-muted:#52616a;--color-border:#d4d9dc;--color-surface:#fff;--shadow-sm:0 3px 12px #15233a10}
 
 .pasos-compra{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0}.pasos-compra span{display:flex;align-items:center;gap:8px;padding:11px 12px;border:1px solid var(--color-border,#deded8);border-radius:10px;background:#fff;font-size:.78rem;line-height:1.35}.pasos-compra b{display:grid;place-items:center;width:24px;height:24px;flex:0 0 auto;border-radius:50%;background:#294d3e;color:#fff;font-size:.72rem}@media(max-width:650px){.pasos-compra{grid-template-columns:1fr}}
+
+@media(max-width:767px){ .compra-grid{display:grid;grid-template-columns:minmax(0,1fr)} .items,.item-info,.producto-carrito{min-width:0;max-width:100%} .item-cabecera strong{white-space:normal;overflow-wrap:anywhere} aside{position:static;max-width:100%} }
+@media(max-width:380px){.producto-carrito{flex-direction:column}.item-imagen{max-width:100%}.acciones{align-items:stretch;flex-direction:column}.acciones>*{width:100%;max-width:100%}}

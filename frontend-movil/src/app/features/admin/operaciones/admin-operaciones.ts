@@ -1,7 +1,7 @@
 import { ObservacionesVisitaComponent } from '../../../shared/components/observaciones-visita/observaciones-visita';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Cotizacion } from '../../../core/models/cotizacion.model';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonSpinner, IonItem, IonLabel, IonSelect, IonSelectOption, IonSearchbar } from '@ionic/angular';
@@ -17,7 +17,7 @@ interface Incidencia { pagoId: number; cotizacionId: number; pedidoId: number | 
 
 @Component({
   selector: 'app-admin-operaciones',
-  imports: [ObservacionesVisitaComponent, CurrencyPipe, DatePipe, IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonSpinner, IonItem, IonLabel, IonSelect, IonSelectOption, IonSearchbar, RouterLink],
+  imports: [ObservacionesVisitaComponent, CurrencyPipe, DatePipe, IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonSpinner, IonItem, IonLabel, IonSelect, IonSelectOption, IonSearchbar],
   templateUrl: './admin-operaciones.html',
   styleUrl: './admin-operaciones.scss',
 })

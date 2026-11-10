@@ -1,10 +1,11 @@
+import { DetalleProductoPedidoComponent } from '../../../shared/components/detalle-producto-pedido/detalle-producto-pedido';
 import { exportarExcel, exportarPdf } from '../../../core/utils/exportar-reportes';
 import { CotizacionesAdminComponent } from '../../../shared/components/cotizaciones-admin/cotizaciones-admin';
 import { VisitaPedidoComponent } from '../../../shared/components/visita-pedido/visita-pedido';
 import { RouterLink } from '@angular/router';
 import { etiquetaEstado } from '../../../core/utils/estado-pedido';
 import { ObservacionesVisitaComponent } from '../../../shared/components/observaciones-visita/observaciones-visita';
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
 import { Usuario } from '../../../core/models/usuario.model';
@@ -14,7 +15,7 @@ import { EstadoPedido, Pedido } from '../../../core/models/pedido.model';
 
 @Component({
   selector: 'app-admin-pedidos',
-  imports: [CotizacionesAdminComponent, VisitaPedidoComponent, RouterLink, ObservacionesVisitaComponent, DatePipe],
+  imports: [DetalleProductoPedidoComponent, CotizacionesAdminComponent, VisitaPedidoComponent, RouterLink, ObservacionesVisitaComponent, DatePipe],
   templateUrl: './admin-pedidos.html',
   styleUrl: './admin-pedidos.scss',
 })
@@ -26,6 +27,19 @@ export class AdminPedidosComponent implements OnInit {
   esAdmin = this.auth.esAdmin;
   esVendedor = this.auth.esVendedor;
 
+  busqueda = signal('');
+  filtroEstado = signal('TODOS');
+  filtroComuna = signal('TODAS');
+  comunas = computed(() => [...new Set(this.pedidos().map(p => p.comuna).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es')));
+  pedidosFiltrados = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase('es-CL');
+    return this.pedidos().filter(p => {
+      const texto = [p.id, p.productoNombre, p.comuna, p.direccion, p.vendedorNombre, p.tecnicoNombre].join(' ').toLocaleLowerCase('es-CL');
+      return (!q || texto.includes(q)) && (this.filtroEstado() === 'TODOS' || p.estado === this.filtroEstado())
+        && (this.filtroComuna() === 'TODAS' || p.comuna === this.filtroComuna());
+    });
+  });
+  limpiarFiltros(): void { this.busqueda.set(''); this.filtroEstado.set('TODOS'); this.filtroComuna.set('TODAS'); }
   pedidos = signal<Pedido[]>([]);
   cargando = signal(true);
   errorCarga = signal(false);

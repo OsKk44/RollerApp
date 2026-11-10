@@ -41,5 +41,6 @@ public class GestionServicioService {
   a.recurso="SERVICIO";a.recursoId=s.getId();
   a.detalle="Precio="+s.getPrecio()+"; comisión="+s.getComisionTecnico()+"; activo="+s.getActivo();
   auditoria.save(a);
+        AuditoriaRegistroHttp.marcarRegistrado();
  }
 }

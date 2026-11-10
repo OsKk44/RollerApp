@@ -14,3 +14,5 @@ ion-content article ion-button { min-height:42px; max-width:100%; white-space:no
  ion-content article{padding:13px!important;box-shadow:0 3px 10px rgba(20,43,34,.035)}
  ion-content article p{font-size:.84rem;line-height:1.5}
 }
+
+@media(max-width:380px){.operaciones-nav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.operaciones-nav ion-button{width:100%;min-width:0;margin:0;font-size:.72rem}}

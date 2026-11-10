@@ -1,3 +1,4 @@
+import { DetalleProductoPedidoComponent } from '../../../shared/components/detalle-producto-pedido/detalle-producto-pedido';
 import { IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton } from '@ionic/angular';
 import { CotizacionesAdminComponent } from '../../../shared/components/cotizaciones-admin/cotizaciones-admin';
 import { VisitaPedidoComponent } from '../../../shared/components/visita-pedido/visita-pedido';
@@ -14,7 +15,7 @@ import { EstadoPedido, Pedido } from '../../../core/models/pedido.model';
 
 @Component({
   selector: 'app-admin-pedidos',
-  imports: [IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton, CotizacionesAdminComponent, VisitaPedidoComponent, RouterLink, ObservacionesVisitaComponent, DatePipe],
+  imports: [DetalleProductoPedidoComponent, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton, CotizacionesAdminComponent, VisitaPedidoComponent, RouterLink, ObservacionesVisitaComponent, DatePipe],
   templateUrl: './admin-pedidos.html',
   styleUrl: './admin-pedidos.scss',
 })

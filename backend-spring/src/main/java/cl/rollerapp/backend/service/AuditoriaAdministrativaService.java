@@ -22,6 +22,7 @@ public class AuditoriaAdministrativaService {
         evento.recursoId = recursoId;
         evento.detalle = detalle;
         repository.save(evento);
+        AuditoriaRegistroHttp.marcarRegistrado();
     }
 
     @Transactional(readOnly=true)

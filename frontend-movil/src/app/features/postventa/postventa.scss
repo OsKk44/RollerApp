@@ -45,3 +45,5 @@ p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 0.9rem; }
 :host{display:block;height:100%}input,textarea,select{max-width:100%;box-sizing:border-box}button,a{min-height:44px} @media(max-width:600px){.compra-grid{display:block}.item-cabecera{flex-wrap:wrap}.producto-carrito{flex-wrap:wrap}aside{margin-top:20px}}
 
 :host{padding:0;--color-primary:var(--ion-color-primary);--color-primary-dark:var(--ion-color-primary-shade);--color-accent-dark:#8a4e31;--color-text:#172b32;--color-text-muted:#52616a;--color-border:#d4d9dc;--color-surface:#fff;--shadow-sm:0 3px 12px #15233a10}
+
+@media(max-width:767px){.postventa-layout,.form-dos{display:grid;grid-template-columns:minmax(0,1fr);min-width:0}.postventa-layout>*{min-width:0;max-width:100%}.postventa-intro{padding:20px 0}.postventa-ayuda,.postventa-layout .form-contenedor{padding:18px}}

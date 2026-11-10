@@ -7,7 +7,7 @@ import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonImg,
+  IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton,
   IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonCheckbox, IonButton, IonText,
 } from '@ionic/angular';
 import { ProductoService } from '../../core/services/producto.service';
@@ -22,7 +22,7 @@ import { Producto, Tela, Mecanismo, ServicioAdicional } from '../../core/models/
   selector: 'app-producto-detalle',
   imports: [
     ReactiveFormsModule, CurrencyPipe, DecimalPipe,
-    IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonImg,
+    IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton,
     IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonCheckbox, IonButton, IonText,
   ],
   templateUrl: './producto-detalle.html',

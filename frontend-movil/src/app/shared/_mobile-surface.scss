@@ -16,3 +16,12 @@
 .mobile-page.mobile-page tbody tr{display:block;background:#fff;border:1px solid #d4d9dc;border-radius:12px;padding:14px;margin:12px 0}.mobile-page.mobile-page td{display:block;width:100%;min-width:0;border:0;padding:8px 0;overflow-wrap:anywhere}.mobile-page.mobile-page td::before{content:attr(data-label);display:block;font-size:.78rem;font-weight:700;color:#52616a;margin-bottom:4px}
 .mobile-page.mobile-page .personal-card,.mobile-page.mobile-page .form-contenedor,.mobile-page.mobile-page .perfil-identidad{padding:16px}.mobile-page.mobile-page .nuevo-bloque select,.mobile-page.mobile-page .personal-form input,.mobile-page.mobile-page .personal-form select{width:100%}
 }
+
+@media(max-width:767px){
+.mobile-page.mobile-page{width:100%;max-width:100%;min-width:0}
+.mobile-page.mobile-page .filtros>*{min-width:0;max-width:100%}
+.mobile-page.mobile-page .tabla-contenedor{min-width:0;max-width:100%}
+.mobile-page.mobile-page table{min-width:0;max-width:100%}
+.mobile-page.mobile-page td button,.mobile-page.mobile-page td select{max-width:100%}
+.mobile-page.mobile-page .nuevo-producto-grid,.mobile-page.mobile-page .config-grid,.mobile-page.mobile-page .client-grid,.mobile-page.mobile-page .servicios-grid{grid-template-columns:minmax(0,1fr)}
+}

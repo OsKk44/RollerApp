@@ -56,7 +56,7 @@ public class ProductoImagenController {
         String nombre = UUID.randomUUID() + (MediaType.IMAGE_PNG_VALUE.equals(tipo) ? ".png" : ".jpg");
         Path destino = directorio.resolve(nombre);
         try (InputStream entrada = archivo.getInputStream()) {
-            Files.copy(archivo.getInputStream(), destino);
+            Files.copy(entrada, destino);
         }
         return Map.of("imagenPrincipal", "/api/productos/imagenes/" + nombre);
     }

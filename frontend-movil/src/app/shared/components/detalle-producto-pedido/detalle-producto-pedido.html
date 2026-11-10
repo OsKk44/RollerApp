@@ -1,0 +1,27 @@
+<section class="detalle-producto-pedido">
+  <button type="button" class="detalle-toggle" [attr.aria-expanded]="abierto()" [attr.aria-controls]="'detalle-producto-' + pedidoId()" (click)="alternar()">
+    {{ abierto() ? 'Ocultar detalle del producto' : 'Ver detalle del producto' }}
+  </button>
+  @if (abierto()) {
+    <div class="detalle-cuerpo" [id]="'detalle-producto-' + pedidoId()">
+      @if (cargando()) { <p role="status">Cargando detalle...</p> }
+      @else if (error()) { <p role="alert">No se pudo cargar el detalle.</p><button type="button" (click)="cargar()">Reintentar</button> }
+      @else if (detalle(); as d) {
+        <h3>{{ d.productoNombre }}</h3>
+        <dl>
+          <div><dt>Medidas</dt><dd>{{ d.anchoCm }} × {{ d.altoCm }} cm</dd></div>
+          <div><dt>Tela</dt><dd>{{ d.telaNombre }}</dd></div>
+          <div><dt>Mecanismo</dt><dd>{{ d.mecanismoNombre }}</dd></div>
+          <div><dt>Superficie</dt><dd>{{ d.metrosCuadrados | number:'1.2-2' }} m²</dd></div>
+          <div><dt>Superficie facturada</dt><dd>{{ d.metrosCuadradosFacturados | number:'1.2-2' }} m²</dd></div>
+          <div><dt>Instalación / visita</dt><dd>{{ d.requiereVisita ? 'Requiere visita' : 'Sin visita' }}</dd></div>
+          @if (d.servicios?.length) { <div class="detalle-ancho"><dt>Servicios</dt><dd>@for (servicio of d.servicios; track servicio.id) { <span class="servicio">{{ servicio.nombre }}</span> }</dd></div> }
+          <div><dt>Tela</dt><dd>${{ d.valorTela | number:'1.0-0' }}</dd></div>
+          <div><dt>Mecanismo</dt><dd>${{ d.valorMecanismo | number:'1.0-0' }}</dd></div>
+          <div><dt>Servicios</dt><dd>${{ d.valorServicios | number:'1.0-0' }}</dd></div>
+          <div><dt>Total del producto</dt><dd><strong>${{ d.total | number:'1.0-0' }} CLP</strong></dd></div>
+        </dl>
+      }
+    </div>
+  }
+</section>

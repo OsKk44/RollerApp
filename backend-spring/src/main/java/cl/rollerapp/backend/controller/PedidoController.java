@@ -41,6 +41,16 @@ public class PedidoController {
         return new NotificacionesRespuesta(pedidoService.marcarNotificacionesVistas(principal.getId()));
     }
 
+    @GetMapping("/{id}/detalle-producto")
+    @PreAuthorize("hasAnyRole('ADMIN','VENDEDOR','TECNICO')")
+    public cl.rollerapp.backend.dto.cotizacion.CotizacionResponse detalleProducto(
+            @PathVariable Long id, @AuthenticationPrincipal UsuarioPrincipal principal) {
+        boolean admin = principal.getAuthorities().stream().anyMatch(a -> "ROLE_ADMIN".equals(a.getAuthority()));
+        boolean vendedor = principal.getAuthorities().stream().anyMatch(a -> "ROLE_VENDEDOR".equals(a.getAuthority()));
+        var rol = admin ? Rol.ADMIN : vendedor ? Rol.VENDEDOR : Rol.TECNICO;
+        return pedidoService.detalleProductoPedido(id, principal.getId(), rol);
+    }
+
     @GetMapping("/admin/todos")
     @PreAuthorize("hasRole('ADMIN') or hasRole('VENDEDOR')")
     public List<PedidoResponse> listarTodos() {

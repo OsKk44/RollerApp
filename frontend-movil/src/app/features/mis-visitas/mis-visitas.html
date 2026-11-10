@@ -28,6 +28,7 @@
             <ion-badge>{{ etiquetaEstado(visita.estado) }}</ion-badge>
           </ion-label>
         </ion-item>
+        <div class="ion-padding-horizontal"><app-detalle-producto-pedido [pedidoId]="visita.id" /></div>
         @if (visita.atencionInicio) {<p>Atención iniciada: {{visita.atencionInicio | date:'HH:mm:ss'}} @if (visita.atencionFin) { · Finalizada: {{visita.atencionFin | date:'HH:mm:ss'}} }</p>}
           @if (visita.visitaId) { <app-observaciones-visita [visitaId]="visita.visitaId" [estado]="visita.visitaEstado" /> }
         <div class="ion-padding-bottom acciones-visita">

@@ -17,6 +17,7 @@
           <a [routerLink]="['/tabs/clientes',pedido.clienteId]">Ver ficha del cliente</a>
           @if(esAdmin() && pedido.estado!=='REALIZADO' && pedido.estado!=='CANCELADO'){<app-visita-pedido [pedido]="pedido" (actualizado)="cargar()" />}
           <strong>Pedido #{{ pedido.id }}</strong> — {{ pedido.productoNombre }}
+          <app-detalle-producto-pedido [pedidoId]="pedido.id" />
           <p class="detalle">{{ pedido.direccion }}, {{ pedido.comuna }} · {{ pedido.creadoEn | date:'dd/MM/yyyy' }}</p>
           <p class="detalle">Vendedor: {{ pedido.vendedorNombre || 'Sin vendedor (compra online)' }} · Técnico: {{ pedido.tecnicoNombre || 'Sin técnico' }}</p>
           @if (pedido.estado !== 'REALIZADO' && pedido.estado !== 'CANCELADO') {

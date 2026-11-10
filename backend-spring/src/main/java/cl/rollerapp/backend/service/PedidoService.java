@@ -26,6 +26,24 @@ public class PedidoService {
     private final ComisionService comisionService;
     private final ApplicationEventPublisher eventos;
 
+    /** Detalle de la compra, sólo para roles habilitados y para el técnico asignado. */
+    @Transactional(readOnly = true)
+    public cl.rollerapp.backend.dto.cotizacion.CotizacionResponse detalleProductoPedido(
+            Long pedidoId, Long usuarioId, cl.rollerapp.backend.model.enums.Rol rol) {
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Pedido no encontrado."));
+        if (rol == cl.rollerapp.backend.model.enums.Rol.TECNICO) {
+            if (pedido.getAgendaBloque() == null || pedido.getAgendaBloque().getTecnico() == null
+                    || !usuarioId.equals(pedido.getAgendaBloque().getTecnico().getId())) {
+                throw new ApiException(HttpStatus.FORBIDDEN, "No puedes consultar este pedido.");
+            }
+        } else if (rol != cl.rollerapp.backend.model.enums.Rol.ADMIN
+                && rol != cl.rollerapp.backend.model.enums.Rol.VENDEDOR) {
+            throw new ApiException(HttpStatus.FORBIDDEN, "No tienes permiso para consultar este pedido.");
+        }
+        return cl.rollerapp.backend.dto.cotizacion.CotizacionResponse.desde(pedido.getCotizacion());
+    }
+
     @Transactional(readOnly = true)
     public List<PedidoResponse> listarPropios(Long clienteId) {
         return pedidoRepository.findByCliente_IdOrderByIdDesc(clienteId).stream()

@@ -18,7 +18,7 @@ export class HerramientasComponent {
  {titulo:'Comisiones',detalle:'Consultar y marcar pagadas',ruta:'/tabs/admin-comisiones'},
  {titulo:'Postventa',detalle:'Resolver solicitudes de clientes',ruta:'/tabs/admin-postventa'},
  {titulo:'Incidencias de pago',detalle:'Conciliar pagos y asignar visitas',ruta:'/tabs/admin-incidencias'},
- {titulo:'Comunicaciones',detalle:'Historial y reintento de correos',ruta:'/tabs/admin-comunicaciones'},
+ {titulo:'Auditoría',detalle:'Actividad del sistema, correos y pagos',ruta:'/tabs/admin-comunicaciones'},
  {titulo:'Cotizaciones',detalle:'Presupuestos y paginación',ruta:'/tabs/admin-operaciones',parametros:{seccion:'cotizaciones'}}];
  publicos:Acceso[]=[{titulo:'Servicios disponibles',detalle:'Qué ofrecemos y sus precios',ruta:'/tabs/servicios'},{titulo:'Reseñas',detalle:'Opiniones y experiencia',ruta:'/tabs/resenas'},{titulo:'Solicitar postventa',detalle:'Ayuda con una compra',ruta:'/tabs/postventa'}];
 }

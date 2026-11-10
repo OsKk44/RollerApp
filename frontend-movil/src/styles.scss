@@ -287,3 +287,55 @@ ion-content img{max-width:100%;height:auto}
  ion-content input,ion-content select,ion-content textarea{max-width:100%;box-sizing:border-box}
  ion-content .ion-padding{--padding-start:12px;--padding-end:12px}
 }
+
+
+/* Adaptación transversal para pantallas táctiles pequeñas.
+   Solo afecta distribución y legibilidad: no modifica la paleta ni la identidad visual. */
+html, body, app-root, ion-app, ion-router-outlet { max-width:100%; min-width:0; }
+html, body { width:100%; }
+ion-content { min-width:0; }
+ion-content::part(scroll) { min-width:0; max-width:100%; }
+ion-content main, ion-content section, ion-content article,
+ion-content form, ion-content fieldset, ion-content aside,
+ion-content [class$="-grid"], ion-content [class$="-layout"] { min-width:0; max-width:100%; }
+ion-content img, ion-content video, ion-content canvas, ion-content svg { max-width:100%; }
+ion-content p, ion-content h1, ion-content h2, ion-content h3,
+ion-content td, ion-content dd, ion-content label, ion-content a { overflow-wrap:anywhere; }
+ion-modal { --max-width:100%; }
+
+@media (max-width:767px) {
+  ion-content .mobile-page,
+  ion-content .management-page,
+  ion-content .comisiones { width:100%; max-width:100%; min-width:0; box-sizing:border-box; }
+  ion-content .comisiones { padding:16px 12px; }
+  ion-content .mobile-page > *, ion-content .management-page > * { max-width:100%; min-width:0; }
+  ion-content input:not([type="radio"]):not([type="checkbox"]),
+  ion-content select, ion-content textarea { min-width:0; max-width:100%; box-sizing:border-box; font-size:16px; }
+  ion-content button, ion-content ion-button { max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+  ion-content .filtros, ion-content .auditoria-filtros { min-width:0; max-width:100%; }
+  ion-content .filtros > *, ion-content .auditoria-filtros > * { min-width:0; max-width:100%; }
+  ion-content .tabla-contenedor, ion-content .historial-tabla,
+  ion-content .auditoria-tabla-wrap { max-width:100%; min-width:0; }
+  ion-content .mobile-page table:not(.auditoria-tabla) { min-width:0; max-width:100%; }
+  ion-content .mobile-page table:not(.auditoria-tabla) td { overflow-wrap:anywhere; }
+  ion-content ion-card { max-width:calc(100% - 20px); margin-left:10px; margin-right:10px; }
+  ion-content ion-card-content, ion-content ion-card-header { min-width:0; }
+  ion-title { font-size:clamp(.88rem,4.2vw,1.05rem); }
+  ion-tab-bar { min-width:0; }
+  ion-tab-button { min-width:0; flex:1 1 0; --padding-start:2px; --padding-end:2px; }
+  ion-tab-button ion-label { font-size:clamp(.59rem,2.5vw,.75rem); white-space:normal; text-align:center; line-height:1.15; }
+  ion-tab-button ion-icon { font-size:1.2rem; }
+}
+
+@media (max-width:380px) {
+  ion-content .mobile-page h1 { font-size:1.35rem; }
+  ion-content .ion-padding { --padding-start:10px; --padding-end:10px; }
+  ion-content .mobile-page .acciones, ion-content .mobile-page .pedido-acciones,
+  ion-content .mobile-page .usuario-acciones, ion-content .mobile-page .comision-acciones {
+    display:flex; flex-direction:column; align-items:stretch; gap:8px;
+  }
+  ion-content .mobile-page .acciones > *, ion-content .mobile-page .pedido-acciones > *,
+  ion-content .mobile-page .usuario-acciones > *, ion-content .mobile-page .comision-acciones > * {
+    max-width:100%; width:100%;
+  }
+}

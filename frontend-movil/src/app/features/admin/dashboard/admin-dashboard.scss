@@ -78,3 +78,5 @@ th,td { padding: 12px 8px; text-align: left; border-bottom: 1px solid #e7e5df; }
  .reporte-flecha{display:none}.reporte-boton small{font-size:.67rem}
 }
 @media(max-width:355px){.grupo-admin .accesos-admin{grid-template-columns:1fr}.reportes-acciones{grid-template-columns:1fr}}
+
+@media(max-width:380px){.indicadores,.grupo-admin .accesos-admin,.reportes-acciones{grid-template-columns:minmax(0,1fr)}.grupo-admin .acceso-admin{min-width:0}.reporte-boton{min-width:0;max-width:100%}}

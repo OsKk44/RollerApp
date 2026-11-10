@@ -44,6 +44,22 @@ CREATE TABLE auditoria_administrativa (
 ) ENGINE=InnoDB;
 
 
+-- Auditoría de peticiones de los clientes web y móvil. Solo metadatos, sin payloads.
+CREATE TABLE auditoria_eventos (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  actor_id BIGINT NULL,
+  accion VARCHAR(24) NOT NULL,
+  metodo VARCHAR(12) NOT NULL,
+  recurso VARCHAR(180) NOT NULL,
+  estado INT NOT NULL,
+  duracion_ms BIGINT NOT NULL,
+  origen VARCHAR(12) NOT NULL,
+  creado_en DATETIME(6) NOT NULL,
+  INDEX idx_ae_fecha (creado_en),
+  INDEX idx_ae_actor_fecha (actor_id, creado_en),
+  INDEX idx_ae_accion_fecha (accion, creado_en)
+) ENGINE=InnoDB;
+
 -- Catalogo
 CREATE TABLE telas (
   id          BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
